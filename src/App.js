@@ -3,12 +3,11 @@ import "./App.css";
 
 import Button from "@material-ui/core/Button";
 import Header from "./components/Header"
-import LeftTable from "./components/leftTable";
-import RightTable from "./components/rightTable";
 
 import { Table, TableBody, TableCell, TableHead, TableContainer, TableRow} from "@material-ui/core";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { textAlign } from "@material-ui/system";
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -32,6 +31,7 @@ const reorder = (list, startIndex, endIndex) => {
 */
 const move = (source, destination, droppableSource, droppableDestination) => {
   const sourceClone = Array.from(source);
+  console.log(sourceClone)
   const destClone = Array.from(destination);
   const [removed] = sourceClone.splice(droppableSource.index, 1);
 
@@ -50,7 +50,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: "none",
     padding: grid * 2,
-    color: "#F4C3C2",
+    color: "#eaecf0",
     fontSize: 25,
     margin: `2%`,
 
@@ -68,12 +68,11 @@ class App extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: getItems(10),
-      selected: getItems(5, 10),
       dogsLeft: [],
       dogsRight: []
     };
   }
+
 
   download = async (event) => {
     console.log("DOWNLOADING")
@@ -120,8 +119,8 @@ class App extends React.Component {
      * source arrays stored in the state.
      */
     id2List = {
-      droppable: "items",
-      droppable2: "selected"
+      droppable: "dogsLeft",
+      droppable2: "dogsRight"
   };
 
   getList = id => this.state[this.id2List[id]];
@@ -129,27 +128,24 @@ class App extends React.Component {
 
   onDragEnd = (result) => {
     const { source, destination } = result;
-
+    console.log(source,destination)
         // dropped outside the list
         if (!destination) {
             return;
         }
 
-        if (source.droppableId === destination.droppableId) {
+        if (source.droppableId === destination.droppableId) { // If dropped item in same list
             const items = reorder(
                 this.getList(source.droppableId),
                 source.index,
                 destination.index
             );
-
             let state = { items };
-
             if (source.droppableId === "droppable2") {
-                state = { selected: items };
+                state = { dogsRight: items };
             }
-
             this.setState(state);
-        } else {
+        } else { // Dropped item in a different list
             const result = move(
                 this.getList(source.droppableId),
                 this.getList(destination.droppableId),
@@ -158,8 +154,8 @@ class App extends React.Component {
             );
 
             this.setState({
-                items: result.droppable,
-                selected: result.droppable2
+                dogsLeft: result.droppable,
+                dogsRight: result.droppable2
             });
         }
   }
@@ -196,6 +192,7 @@ class App extends React.Component {
       })
 
     }
+    console.log(this.state.dogsLeft, this.state.dogsRight)
     console.log("Component mounted, Data retrieved.")
   }
 
@@ -219,12 +216,13 @@ class App extends React.Component {
 
       <div id="left">
       <TableHead> 
-        <TableRow><TableCell>Rank</TableCell> <TableCell>Breed1</TableCell></TableRow>
+        <TableRow><TableCell>Rank</TableCell> <TableCell style={{ textAlign: 'center'}}>Breed1</TableCell></TableRow>
         </TableHead>
         <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         <div
-                            ref={provided.innerRef}>
+                            ref={provided.innerRef}
+                            >
                             {this.state.dogsLeft.map((item, index) => (
                                 <Draggable
                                     key={item.id}
