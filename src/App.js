@@ -18,6 +18,7 @@ const reorder = (list, startIndex, endIndex) => {
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
 
+  console.log(result)
   return result;
 };
 
@@ -156,6 +157,8 @@ class App extends React.Component {
             let state = { items };
             if (source.droppableId === "droppable2") {
                 state = { dogsRight: items };
+            } else {
+              state = { dogsLeft: items };
             }
             this.setState(state);
         } else { // Dropped item in a different list
