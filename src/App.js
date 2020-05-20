@@ -45,7 +45,7 @@ const grid = 8;
 const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: "none",
-    padding: grid * 2,
+    padding: grid * 1.6,
     color: "#eaecf0",
     fontSize: 25,
     margin: `2%`,
@@ -144,9 +144,7 @@ class App extends React.Component {
     }
     const { source, destination } = result;
         // dropped outside the list
-        if (!destination) {
-            return;
-        }
+        if (!destination) return;
 
         if (source.droppableId === destination.droppableId) { // If dropped item in same list
             const items = reorder(
@@ -180,14 +178,13 @@ class App extends React.Component {
     const url = "https://dog.ceo/api/breeds/list/all";
     const response = await fetch(url);
     const data = await response.json();
-
     const dogs = Object.keys(data.message)
 
     var i;
     // Could cause bugs one day when API does not return greater than 20 results
     for(i = 1; i <= 10; i++) {
       const random = Math.floor(Math.random()*dogs.length)
-      const content = dogs[random]
+      const content = dogs[random].toUpperCase()
       dogs.splice(random, 1)
 
       // Set State for Breed 1 Table
@@ -198,7 +195,7 @@ class App extends React.Component {
 
     for (i = 11; i <= 20; i++) {
       const random = Math.floor(Math.random()*dogs.length)
-      const content = dogs[random]
+      const content = dogs[random].toUpperCase()
       dogs.splice(random, 1)
 
       
@@ -221,7 +218,7 @@ class App extends React.Component {
       <DragDropContext
       onDragEnd={this.onDragEnd}>
       <div id="left">
-      <TableHeading name={"Breed1"}/>
+      <TableHeading name={"BREED 1"}/>
       <Grid container>
       <Grid item xs={12}>
       <Droppable droppableId="droppable">
@@ -247,8 +244,9 @@ class App extends React.Component {
                                         snapshot.isDragging,
                                         provided.draggableProps.style
                                     )}>
-                                    <div>{`Rank: ` + (index+1).toString()}</div>
-                                      {item.content}
+                                    
+                                    <div id="dog"> {item.content} </div>
+                                    <div id="rank">{`Rank: ` + (index+1).toString()}</div>
                                   </div>
                               )}
                           </Draggable>
@@ -270,8 +268,9 @@ class App extends React.Component {
 
 
       <div id="right">
-      <TableHeading name={"Breed2"}/>
+      <TableHeading name={"BREED 2"}/>
       <Grid container>
+      
      
       <Grid item xs={12}> 
       <Droppable droppableId="droppable2">
@@ -279,7 +278,7 @@ class App extends React.Component {
                         <div
                             ref={provided.innerRef}>
                             {this.state.dogsRight.map((item, index) => (
-                                <Draggable
+                            <Draggable
                                     key={item.id}
                                     draggableId={item.id}
                                     index={index}>
@@ -292,8 +291,8 @@ class App extends React.Component {
                                               snapshot.isDragging,
                                               provided.draggableProps.style
                                           )}>
-                                          <div >{`Rank: ` + (index+1).toString()}</div>
-                                            {item.content}
+                                            <div id="dog"> {item.content} </div>
+                                            <div id="rank">{`Rank: ` + (index+1).toString()}</div>
                                         </div>
                                     )}
                                 </Draggable>
