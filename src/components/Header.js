@@ -1,7 +1,5 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
-
-import MenuIcon from '@material-ui/icons/Menu'
 import IconButton from '@material-ui/core/IconButton';
 
 import Toolbar from '@material-ui/core/Toolbar'
@@ -29,7 +27,7 @@ function Header (props) {
         className={classes.appbar} 
         position="static">
             <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="https://www.nawu.ca">
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" target="_blank" href="https://www.nawu.ca">
             <Dog />
           </IconButton>
                 <Typography variant="h6" color="inherit">

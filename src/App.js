@@ -4,17 +4,11 @@ import "./App.css";
 import Button from "@material-ui/core/Button";
 import Header from "./components/Header"
 
-import { Table, TableBody, TableCell, TableHead, TableContainer, TableRow} from "@material-ui/core";
+import { TableCell, TableHead, TableRow} from "@material-ui/core";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { textAlign } from "@material-ui/system";
+import AlertDialog from './components/woofDialog'
 
-// fake data generator
-const getItems = (count, offset = 0) =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k + offset}`,
-        content: `item ${k + offset}`
-    }));
 
 
 // a little function to help us with reordering the result
@@ -30,8 +24,8 @@ const reorder = (list, startIndex, endIndex) => {
 * Moves an item from one list to another list.
 */
 const move = (source, destination, droppableSource, droppableDestination) => {
+  
   const sourceClone = Array.from(source);
-  console.log(sourceClone)
   const destClone = Array.from(destination);
   const [removed] = sourceClone.splice(droppableSource.index, 1);
 
@@ -69,8 +63,16 @@ class App extends React.Component {
       error: null,
       isLoaded: false,
       dogsLeft: [],
-      dogsRight: []
+      dogsRight: [],
+      woofError: false
     };
+  }
+
+
+  myCallBack = () => {
+    this.setState({
+      woofError: false
+    })
   }
 
 
@@ -127,8 +129,14 @@ class App extends React.Component {
 
 
   onDragEnd = (result) => {
+    if (this.state.dogsLeft.length === 1 || this.state.dogsRight.length === 1) {
+      console.log("Woof Invalid Action Woof")
+      this.setState(prevState => ({
+        woofError: !prevState.woofError
+      }));
+      return;
+    }
     const { source, destination } = result;
-    console.log(source,destination)
         // dropped outside the list
         if (!destination) {
             return;
@@ -192,7 +200,6 @@ class App extends React.Component {
       })
 
     }
-    console.log(this.state.dogsLeft, this.state.dogsRight)
     console.log("Component mounted, Data retrieved.")
   }
 
@@ -205,15 +212,8 @@ class App extends React.Component {
           </div>
 
       <div id="parent">
-      {/* <TableContainer>
-        <TableHead> 
-        <TableRow><TableCell>Rank</TableCell> <TableCell>Breed1</TableCell></TableRow>
-        </TableHead>
-        </TableContainer> */}
       <DragDropContext
       onDragEnd={this.onDragEnd}>
-
-
       <div id="left">
       <TableHead> 
         <TableRow><TableCell>Rank</TableCell> <TableCell style={{ textAlign: 'center'}}>Breed1</TableCell></TableRow>
@@ -282,11 +282,11 @@ class App extends React.Component {
                 </Droppable>
                 </div>
         </DragDropContext>
-
-
       </div>
 
 
+
+   <AlertDialog bool={this.state.woofError} cb={this.myCallBack}/>   
 
       <Button 
           id="download-button"
@@ -296,8 +296,6 @@ class App extends React.Component {
           >
           Download as JSON
           </Button>
-
-
 
       </div>
   
