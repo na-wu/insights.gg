@@ -1,14 +1,14 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import Button from '@material-ui/core/Button';
-import Header from './components/Header'
-import LeftTable from './components/leftTable';
-import RightTable from './components/rightTable';
+import Button from "@material-ui/core/Button";
+import Header from "./components/Header"
+import LeftTable from "./components/leftTable";
+import RightTable from "./components/rightTable";
 
-import { Table, TableBody, TableCell, TableHead, TableContainer, TableRow} from '@material-ui/core';
+import { Table, TableBody, TableCell, TableHead, TableContainer, TableRow} from "@material-ui/core";
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 // fake data generator
 const getItems = (count, offset = 0) =>
@@ -48,14 +48,14 @@ const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
+    userSelect: "none",
     padding: grid * 2,
-    color: '#F4C3C2',
+    color: "#F4C3C2",
     fontSize: 25,
     margin: `2%`,
 
     // change background colour if dragging
-    background: isDragging ? '#16242F' :'#0d1118',
+    background: isDragging ? "#16242F" :"#0d1118",
     // styles we need to apply on draggables
     ...draggableStyle
 });
@@ -103,9 +103,9 @@ class App extends React.Component {
 
     const filename = "DogBreeds.json"
     const json = JSON.stringify(myData)
-    const blob = new Blob([json], {type:'application/json'});
+    const blob = new Blob([json], {type:"application/json"});
     const href = await URL.createObjectURL(blob);
-    const link = document.createElement('a')
+    const link = document.createElement("a")
     link.href = href
     link.download = filename
 
@@ -120,8 +120,8 @@ class App extends React.Component {
      * source arrays stored in the state.
      */
     id2List = {
-      droppable: 'items',
-      droppable2: 'selected'
+      droppable: "items",
+      droppable2: "selected"
   };
 
   getList = id => this.state[this.id2List[id]];
@@ -144,7 +144,7 @@ class App extends React.Component {
 
             let state = { items };
 
-            if (source.droppableId === 'droppable2') {
+            if (source.droppableId === "droppable2") {
                 state = { selected: items };
             }
 
@@ -180,7 +180,7 @@ class App extends React.Component {
 
       // Set State for Breed 1 Table
       this.setState({
-        dogsLeft: [...this.state.dogsLeft, {'id' : `item-${i}`, 'content' : content}]
+        dogsLeft: [...this.state.dogsLeft, {"id" : `item-${i}`, "content" : content}]
       })
     }
 
@@ -192,7 +192,7 @@ class App extends React.Component {
       
       // Set State for Breed 2 Table
       this.setState({
-        dogsRight: [...this.state.dogsRight, {'id' : `item-${i}`, 'content' : content}]
+        dogsRight: [...this.state.dogsRight, {"id" : `item-${i}`, "content" : content}]
       })
 
     }

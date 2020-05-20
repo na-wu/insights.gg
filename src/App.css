@@ -31,23 +31,27 @@
 #header {
   color: #465880;
 }
+
 #parent {
   display: flex;
   margin-top: 5%;
-
 }
+
 #left {
   width: 50%;
   background: #465880;
   margin-right: 1%;
   margin-left: 1%;
+
   /* Just so it's visible */
 }
+
 #right {
   width: 50%;
   margin-right: 1%;
   margin-left: 1%;
   background: #465880;
+  
   /* Just so it's visible */
 }
 
