@@ -2,6 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/342d255d-c64c-4f8f-9086-b5488d41c237/deploy-status)](https://app.netlify.com/sites/epic-fermi-a12e78/deploys)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7dc023a828cb47eaa674fd3a23c3f401)](https://www.codacy.com/manual/na-wu/insights.gg?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=na-wu/insights.gg&amp;utm_campaign=Badge_Grade)
 
 ### `yarn start`
 
