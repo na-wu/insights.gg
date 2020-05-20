@@ -4,16 +4,13 @@ import "./App.css";
 import Button from "@material-ui/core/Button";
 import Header from "./components/Header"
 
-import { TableCell, TableHead, TableRow} from "@material-ui/core";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import AlertDialog from './components/woofDialog'
 import TableHeading from './components/TableHeading'
 
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -68,8 +65,9 @@ class App extends React.Component {
       isLoaded: false,
       dogsLeft: [],
       dogsRight: [],
-      woofError: false
+      woofError: false,
     };
+    this.myRef = React.createRef();
   }
 
 
@@ -78,6 +76,8 @@ class App extends React.Component {
       woofError: false
     })
   }
+
+  
 
 
   download = async (event) => {
@@ -133,6 +133,7 @@ class App extends React.Component {
 
 
   onDragEnd = (result) => {
+    console.log(result)
     if (this.state.dogsLeft.length === 1 || this.state.dogsRight.length === 1) {
       console.log("Woof Invalid Action Woof")
       this.setState(prevState => ({
@@ -217,35 +218,43 @@ class App extends React.Component {
       <DragDropContext
       onDragEnd={this.onDragEnd}>
       <div id="left">
-      <TableHeading />
+      <TableHeading name={"Breed1"}/>
       <Grid container>
-      <Grid item xs={3}>
-      {/* Put Rankings Here */}
-      </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={12}>
       <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         <div
                             ref={provided.innerRef}
                             >
                             {this.state.dogsLeft.map((item, index) => (
+                              <div>
+                                
                                 <Draggable
-                                    key={item.id}
-                                    draggableId={item.id}
-                                    index={index}>
-                                    {(provided, snapshot) => (
-                                        <div
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                            style={getItemStyle(
-                                              snapshot.isDragging,
-                                              provided.draggableProps.style
-                                          )}>
-                                            {item.content}
-                                        </div>
-                                    )}
-                                </Draggable>
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}>
+                              {(provided, snapshot) => (
+                                
+                                  <div
+                                  
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={getItemStyle(
+                                        snapshot.isDragging,
+                                        provided.draggableProps.style
+                                    )}>
+                                    <div>{`Rank: ` + (index+1).toString()}</div>
+                                      {item.content}
+                                  </div>
+                              )}
+                          </Draggable>
+                          
+
+
+                               
+                          </div>
+                                
                             ))}
                             {provided.placeholder}
                         </div>
@@ -258,12 +267,10 @@ class App extends React.Component {
 
 
       <div id="right">
-      <TableHeading />
+      <TableHeading name={"Breed2"}/>
       <Grid container>
-      <Grid item xs={3}>
-      {/* Put Rankings Here */}
-      </Grid>
-      <Grid item xs={9}> 
+     
+      <Grid item xs={12}> 
       <Droppable droppableId="droppable2">
                     {(provided, snapshot) => (
                         <div
@@ -282,6 +289,7 @@ class App extends React.Component {
                                               snapshot.isDragging,
                                               provided.draggableProps.style
                                           )}>
+                                          <div >{`Rank: ` + (index+1).toString()}</div>
                                             {item.content}
                                         </div>
                                     )}

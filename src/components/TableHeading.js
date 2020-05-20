@@ -14,17 +14,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CenteredGrid() {
+export default function CenteredGrid(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>Rank</Paper>
-        </Grid>
-        <Grid item xs={9}>
-          <Paper className={classes.paper}>Breed</Paper>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>{props.name}</Paper>
         </Grid>
       </Grid>
     </div>
