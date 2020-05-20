@@ -7,8 +7,12 @@ import Header from "./components/Header"
 import { TableCell, TableHead, TableRow} from "@material-ui/core";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import AlertDialog from './components/woofDialog'
 
+import AlertDialog from './components/woofDialog'
+import TableHeading from './components/TableHeading'
+
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 
 // a little function to help us with reordering the result
@@ -207,18 +211,19 @@ class App extends React.Component {
   render () {
     return (
       <div className="App">
-        <div id="nav">
-          <Header />
-          </div>
+        <div id="nav"> <Header /> </div>
 
       <div id="parent">
       <DragDropContext
       onDragEnd={this.onDragEnd}>
       <div id="left">
-      <TableHead> 
-        <TableRow><TableCell>Rank</TableCell> <TableCell style={{ textAlign: 'center'}}>Breed1</TableCell></TableRow>
-        </TableHead>
-        <Droppable droppableId="droppable">
+      <TableHeading />
+      <Grid container>
+      <Grid item xs={3}>
+      {/* Put Rankings Here */}
+      </Grid>
+      <Grid item xs={9}>
+      <Droppable droppableId="droppable">
                     {(provided, snapshot) => (
                         <div
                             ref={provided.innerRef}
@@ -246,14 +251,20 @@ class App extends React.Component {
                         </div>
                     )}
                 </Droppable>
+        </Grid>
+      </Grid>
+        
         </div>
 
 
-      <div id="right"> 
-      <TableHead> 
-        <TableRow><TableCell>Rank</TableCell> <TableCell>Breed1</TableCell></TableRow>
-        </TableHead>
-                <Droppable droppableId="droppable2">
+      <div id="right">
+      <TableHeading />
+      <Grid container>
+      <Grid item xs={3}>
+      {/* Put Rankings Here */}
+      </Grid>
+      <Grid item xs={9}> 
+      <Droppable droppableId="droppable2">
                     {(provided, snapshot) => (
                         <div
                             ref={provided.innerRef}>
@@ -280,6 +291,10 @@ class App extends React.Component {
                             </div>
                     )}
                 </Droppable>
+      </Grid>
+      </Grid>
+    
+                
                 </div>
         </DragDropContext>
       </div>
