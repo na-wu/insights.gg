@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DescriptionAlerts(props) {
   const classes = useStyles();
-  console.log(props.bool);
 
   const [open, setOpen] = React.useState(props.bool);
 

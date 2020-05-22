@@ -16,8 +16,6 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
-  console.log(result);
   return result;
 };
 
@@ -73,10 +71,6 @@ class App extends React.Component {
   };
 
   download = async (event) => {
-    console.log("DOWNLOADING");
-    console.log(this.state.items);
-    console.log(this.state.selected);
-
     // In this case, Breed 1 is Dogs Left
     // Breed 2 is Dogs Right
     const myData = {
