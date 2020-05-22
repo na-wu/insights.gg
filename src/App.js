@@ -64,7 +64,6 @@ class App extends React.Component {
       dogsRight: [],
       woofError: false,
     };
-    this.myRef = React.createRef();
   }
 
   myCallBack = () => {
@@ -127,15 +126,15 @@ class App extends React.Component {
   getList = (id) => this.state[this.id2List[id]];
 
   onDragEnd = (result) => {
-    console.log(result);
+    const { source, destination } = result;
+
     if (this.state.dogsLeft.length === 1 || this.state.dogsRight.length === 1) {
-      console.log("Woof Invalid Action Woof");
       this.setState((prevState) => ({
         woofError: !prevState.woofError,
       }));
       return;
     }
-    const { source, destination } = result;
+
     // dropped outside the list
     if (!destination) return;
 
@@ -230,6 +229,7 @@ class App extends React.Component {
                               key={item.id}
                               draggableId={item.id}
                               index={index}
+                              // isDragDisabled={this.state.dogsLeft.length === 1}
                             >
                               {(provided, snapshot) => (
                                 <div
@@ -270,6 +270,7 @@ class App extends React.Component {
                             key={item.id}
                             draggableId={item.id}
                             index={index}
+                            // isDragDisabled={this.state.dogsRight.length === 1}
                           >
                             {(provided, snapshot) => (
                               <div
