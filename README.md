@@ -35,5 +35,5 @@ To get the React application server running locally:
 
 1. Clone the repository
 2. `npm install` to install required dependencies
-3. `yarn start` to build database migrations
+3. `yarn start` to start application
 4. Visit `http://localhost:3000/` to access the demo
