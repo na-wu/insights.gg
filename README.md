@@ -1,5 +1,5 @@
 <p align="center">
-  <h3 align="center">력 - Insights.gg Technical Assessment</h3>
+  <h3 align="center">Insights.gg Technical Assessment</h3>
 </p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/342d255d-c64c-4f8f-9086-b5488d41c237/deploy-status)](https://app.netlify.com/sites/epic-fermi-a12e78/deploys)
