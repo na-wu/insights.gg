@@ -4,7 +4,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/342d255d-c64c-4f8f-9086-b5488d41c237/deploy-status)](https://app.netlify.com/sites/epic-fermi-a12e78/deploys)
 
-### Thought process:
+<!-- ### Thought process:
 
 1. Read up on the Dogs.ceo API
 2. Read up on Drag and Drop implementation in React
@@ -27,7 +27,7 @@
 
 ### Final Remarks:
 
-1. This challenge was an amazing learning experience! I have always been weaker at Front End Development than Back end, and being able to build a small application really helped with solidifying my understanding of certain concepts.
+1. This challenge was an amazing learning experience! I have always been weaker at Front End Development than Back end, and being able to build a small application really helped with solidifying my understanding of certain concepts. -->
 
 ### Getting Started
 
