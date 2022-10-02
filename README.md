@@ -19,6 +19,7 @@
 12. Tested and fixed minor bugs with some minor design changes
 13. Seeked UI feedback and made adjusments accordingly
 
+
 ### Challenges:
 
 1. Admittedly, aesthetics are not my strongest point. Finding and picking the correct color pallete was challenging and required a lot of time and effort. I am still not sure I am 100% satisfied with the pallette I chose.
