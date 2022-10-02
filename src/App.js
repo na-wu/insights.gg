@@ -5,10 +5,8 @@ import Button from "@material-ui/core/Button";
 import Header from "./components/Header";
 
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
 import AlertDialog from "./components/woofDialog";
 import TableHeading from "./components/TableHeading";
-
 import Grid from "@material-ui/core/Grid";
 
 // a little function to help us with reordering the result
